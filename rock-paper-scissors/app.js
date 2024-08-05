@@ -1,9 +1,9 @@
-export const ROCK = ROCK;
+export const ROCK = "rock";
 export const PAPER = "paper";
-        const SCISSORS = "scissors";
-export const DRAW = "draw",
-              WIN = "win",
-              LOSS = "loss";
+export const SCISSORS = "scissors";
+export const DRAW = "draw";
+export const WIN = "win";
+export const LOSS = "loss";
 
 /*
  * The 'calculateRoundResult' function takes in the playerMove and computerMove as its arguments. Both playerMove and computerMove will respectively be either: 'rock', 'paper', or 'scissors'.
@@ -31,34 +31,51 @@ export const DRAW = "draw",
  */
 
 export function calculateRoundResult(playerMove, computerMove) {
+  // ALL DRAW SCENARIOS
   if (playerMove === ROCK && computerMove === ROCK) {
-    return { 
-      outcome: DRAW, 
-      message: "Both players chose rock. It's a draw." 
-    };
-  }
-  if (playerMove === ROCK && computerMove === PAPER) {
     return {
-      outcome: LOSS,
-      message: "Player chose rock and computer chose paper. Computer wins.",
-    };
-  }
-  if (playerMove === PAPER && computerMove === ROCK) {
-    return {
-      outcome: WIN,
-      message: "Player chose paper and computer chose rock. Player wins.",
-    };
-  }
-  if ((playerMove === PAPER && computerMove === ROCK)) {
-    return {
-      outcome: WIN,
-      message: "Player chose paper and computer chose rock. Player wins.",
+      outcome: DRAW,
+      message: "Both players chose rock. It's a draw.",
     };
   }
   if (playerMove === SCISSORS && computerMove === SCISSORS) {
     return {
       outcome: DRAW,
       message: "Both players chose scissors. It's a draw.",
+    };
+  }
+  if (playerMove === PAPER && computerMove === PAPER) {
+    return {
+      outcome: DRAW,
+      message: "Both players chose paper. It's a draw.",
+    };
+  }
+
+  // ALL WIN SCENARIOS
+  if (playerMove === PAPER && computerMove === ROCK) {
+    return {
+      outcome: WIN,
+      message: "Player chose paper and computer chose rock. Player wins.",
+    };
+  }
+  if (playerMove === SCISSORS && computerMove === PAPER) {
+    return {
+      outcome: WIN,
+      message: "Player chose scissors and computer chose paper. Player wins.",
+    };
+  }
+  if (playerMove === ROCK && computerMove === SCISSORS) {
+    return {
+      outcome: WIN,
+      message: "Player chose rock and computer chose scissors. Player wins.",
+    };
+  }
+
+  // ALL LOSS SCENARIOS
+  if (playerMove === ROCK && computerMove === PAPER) {
+    return {
+      outcome: LOSS,
+      message: "Player chose rock and computer chose paper. Computer wins.",
     };
   }
   if (playerMove === PAPER && computerMove === SCISSORS) {
@@ -73,18 +90,8 @@ export function calculateRoundResult(playerMove, computerMove) {
       message: "Player chose scissors and computer chose rock. Computer wins.",
     };
   }
-  if (playerMove === PAPER && computerMove === PAPER) {
-    return {
-      outcome: DRAW,
-      message: "Both players chose paper. It's a draw.",
-    };
-  }
-  if (playerMove === SCISSORS && computerMove === SCISSORS) {
-    return {
-      outcome: DRAW,
-      message: "Both players chose scissors. It's a draw.",
-    };
-  }
+
+  // ERROR SCENARIO
   throw new Error(
     `Invalid player move (${playerMove}) or computer move ${computerMove}`
   );
@@ -99,7 +106,7 @@ export function generateComputerMove() {
   return randomMove;
 }
 
-/**
+/*
  * The calculateNewScores function should take in in a current scores object (see the `gameLoop` function to see what this object looks like) as well as an outcome (one of the WIN, LOSS, DRAW constants above).
  *
  * It should return a brand new object containing the values from the current scores object, but also with one of the values incremented.
