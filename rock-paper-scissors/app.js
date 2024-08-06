@@ -93,7 +93,7 @@ export function calculateRoundResult(playerMove, computerMove) {
 
   // ERROR SCENARIO
   throw new Error(
-    `Invalid player move (${playerMove}) or computer move ${computerMove}`
+    `Invalid player move (${playerMove}) or computer move (${computerMove})`
   );
 }
 
