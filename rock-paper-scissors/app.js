@@ -100,8 +100,8 @@ export function calculateRoundResult(playerMove, computerMove) {
 // should randomly generate a computer move (one of the ROCK, PAPER or SCISSORS constants above)
 // each option should have an equal chance of being picked
 export function generateComputerMove() {
-  const possibleMoves = [ROCK, PAPER, ROCK];
-  const randomIndex = Math.floor(Math.random() * 2);
+  const possibleMoves = [ROCK, PAPER, SCISSORS];
+  const randomIndex = Math.floor(Math.random() * 3);
   const randomMove = possibleMoves[randomIndex];
   return randomMove;
 }
